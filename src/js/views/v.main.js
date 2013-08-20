@@ -7,12 +7,13 @@ App.Views.MainView = Backbone.View.extend({
 					console.log(this.model);
 				
 					this.model.set('current_view',this);
-					this.model.recalculate();
+					this.model.calculate();
 				
 				},
 				
 				populateView:function(){
 					console.log("Start Main View Children");
+					console.log(this.model);
 					//starting with Tab View just for testing
 					var start_view = new App.Views.TabView({model:this.model});
 					this.$el.html(start_view.$el);

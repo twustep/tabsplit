@@ -14,6 +14,16 @@ App.Views.TabView = Backbone.View.extend({
 						
 				},
 				
+				events: {
+					'click #add-person': 'addPerson'
+				},
+				
+				addPerson:function(){
+					var personName = this.$el.find('#add-person-input').val();
+					
+					App.people_collection.add([{name: personName, items: new App.Collections.Items(null)}]);
+				},
+				
 				populateView:function(){
 					
 					this.render();
@@ -24,9 +34,10 @@ App.Views.TabView = Backbone.View.extend({
 					
 					for (var i=0;i<people.models.length;i++)
 					{ 
-						
-						var newElement = new App.Views.Person({model: people.models[i]});	
+						var person = people.models[i];
+						var newElement = new App.Views.Person({model: person});	
 						$container.append( newElement.$el);
+						
 						
 					
 						

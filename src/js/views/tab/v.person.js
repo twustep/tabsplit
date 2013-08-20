@@ -12,26 +12,33 @@ App.Views.Person = Backbone.View.extend({
 					this.populateView();
 						
 				},
+				
+				events: {
+					'click #add-item': 'addItem'
+				},
+				
+				addItem:function(){
+					var itemName = this.$el.find('#add-item-name-input').val();
+					var itemPrice = this.$el.find('#add-item-price-input').val();
+
+					this.model.get("items").add({description: itemName, price:itemPrice});
+
+				},
 
 				populateView:function(){
 					this.render();
 					
 					var personal_items = this.model.attributes.items;
-					
 					var $container = this.$('#item-list');
 					
 					for (var i=0;i<personal_items.length;i++)
-					{ 
-					
+					{			
 						//console.log(this.model.attributes.items);
 						var itemCollection = personal_items.models[i];
-						var newElement = new App.Views.Item({model: itemCollection});
-						//newElement.listenTo(itemCollection, 'all', newElement.populateView);
 					
-						
+						var newElement = new App.Views.Item({model: itemCollection});
+						//newElement.listenTo(itemCollection, 'all', newElement.populateView);		
 						$container.append( newElement.$el);
-						
-						
 					}
 					
 				},

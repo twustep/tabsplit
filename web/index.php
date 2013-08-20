@@ -33,9 +33,12 @@
 			***************************************
 			-->
 			<script type="text/template" id="tab-template">
-				
-					Open Tab:<br/><br/>
+					Open Tab: <%= model.get("current_tab").attributes.name %><br/><br/>
 					<div id="people-list"></div>
+					Add Person:
+					<input value="" id="add-person-input"><button id="add-person">Add</button>
+					Total: <%= model.get("current_tab").attributes.total %><br>
+					Each Total: <%= model.get("current_tab").attributes.each_total %>
 			</script>
 		<!--
 		***************************************
@@ -45,6 +48,7 @@
 		<script type="text/template" id="person-template">	
 			<%= name %> <%= balance %>
 			<ul id="item-list"></ul>
+			<input value="" id="add-item-name-input"><input value="" id="add-item-price-input"><button id="add-item">Add</button>
 		</script>
 		<!--
 		***************************************
@@ -52,7 +56,7 @@
 		***************************************
 		-->
 		<script type="text/template" id="item-template">
-			<li><%= description %> <%= price %></li>
+			<li><input id="item-edit-description" value="<%= description %>" style="display: none"><span id="item-description"><%= description %></span> <input id="item-edit-price" value="<%= price %>" style="display: none"><span id="item-price"><%= price %></span></li>
 		</script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<script src="assets/js/scripts.min.js"></script>
